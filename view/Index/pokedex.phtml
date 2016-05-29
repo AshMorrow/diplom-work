@@ -1,55 +1,84 @@
-<div class="center-container" >
+<div class="center-container">
     <ul class="pokedex-list-data">
         <?php
         foreach ($param as $id => $pokemon_data) {
-        $pokemon_type = explode('/', $pokemon_data['type']);
-        ?>
-        <li class="col-xs-6 col-sm-4 col-md-3 wow  zoomInRight">
-            <figure>
-                <a href="?route=index/pokemon&name=<?=strtolower($pokemon_data['name'])?>">
-                    <img src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
-                </a>
-            </figure>
-            <div class="pokemon-info">
-                <p class="id">
-                    <span class="number-prefix">№</span><?= $pokemon_data['pokemon_id'] ?>
-                </p>
-                <h5><?= $pokemon_data['name'] ?></h5>
-                <?php
-                if (count($pokemon_type) > 1){
-                foreach ($pokemon_type as $type) {
-                    ?>
-                    <div class='abilities'><span class='pill background-color-<?=strtolower($type)
-                        ?>'><?=$type?></span></div>
+            $pokemon_type = explode('/', $pokemon_data['type']);
+            ?>
+            <li class="col-xs-6 col-sm-4 col-md-3 wow  zoomInRight">
+                <figure>
+                    <a href="?route=index/pokemon&name=<?= strtolower($pokemon_data['name']) ?>">
+                        <img src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
+                    </a>
+                </figure>
+                <div class="pokemon-info">
+                    <p class="id">
+                        <span class="number-prefix">№</span><?= $pokemon_data['pokemon_id'] ?>
+                    </p>
+                    <h5><?= $pokemon_data['name'] ?></h5>
                     <?php
-                }}else{
-                    $type = strtolower($pokemon_type[0]);
-                    echo "<div class='abilities'>",
-                    "<span class='pill background-color-{$type}'>".ucfirst($type)."</span>",
+                    if (count($pokemon_type) > 1) {
+                        foreach ($pokemon_type as $type) {
+                            ?>
+                            <div class='abilities'><span class='pill background-color-<?= strtolower($type)
+                                ?>'><?= $type ?></span></div>
+                            <?php
+                        }
+                    } else {
+                        $type = strtolower($pokemon_type[0]);
+                        echo "<div class='abilities'>",
+                            "<span class='pill background-color-{$type}'>" . ucfirst($type) . "</span>",
                         "</div>";
-            }
-                ?>
-        </li>
+                    }
+                    ?>
+            </li>
         <?php } ?>
     </ul>
-    <form class="clearfix">
-        <button id="addPokemon">Добавить еще</button>
-    </form>
+    <div id="scroll">
+
+    </div>
+    <div class="clearfix">
+        <form>
+            <button id="addPokemon" class="color-lightblue">Добавить еще</button>
+        </form>
+    </div>
     <script>
-        var $offset = 10;
         $(document).ready(function () {
-            $('form').on('submit',function () {
+            var $offset = 10;
+            var inProgress = false;
+            var ajaxLoad = false;
+            $(window).scroll(function () {
+                if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && !inProgress &&
+                    ajaxLoad) {
+                    gedPokemon();
+                }
+            });
+
+            $('form').on('submit', function () {
                 return false;
             });
-            $("#addPokemon").on('click',function () {
+
+            $("#addPokemon").on('click', function () {
+                if(ajaxLoad === false){
+                    ajaxLoad = true;
+                    gedPokemon();
+                }
+            });
+
+            function gedPokemon() {
                 $.ajax({
-                    url: "/?route=index/unit&offset="+$offset,
-                    success: function(data){
+                    url: "/?route=index/unit&offset=" + $offset,
+                    beforeSend: function () {
+                        inProgress = true;
+                    },
+                    success: function (data) {
                         $offset += 10;
                         $('.pokedex-list-data').append(data);
+                        inProgress = false;
                     }
                 });
-            })
+            }
+
         })
+
     </script>
 </div>

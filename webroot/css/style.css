@@ -16,6 +16,9 @@ body{
     background-color: #30a7d7;
     color: #fff;
 }
+.clearfix{
+    clear: both !important;
+}
 
 
 /************************************************/
@@ -64,6 +67,19 @@ body{
     float: left;
     margin: 1em 0;
     width: 100%;
+}
+#addPokemon{
+    padding: 7px 90px;
+    border: 0px none;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgb(0, 0, 0);
+    clear: both;
+    margin: 10px auto;
+    transition: all 0.3s;
+}
+#addPokemon:hover{
+    box-shadow: 0px 1px 2px rgb(0, 0, 0) inset;
+    transition: all 0.3s;
 }
 /************************************************/
 /*******************Type Color*******************/
