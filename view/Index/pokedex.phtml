@@ -32,4 +32,24 @@
         </li>
         <?php } ?>
     </ul>
+    <form class="clearfix">
+        <button id="addPokemon">Добавить еще</button>
+    </form>
+    <script>
+        var $offset = 10;
+        $(document).ready(function () {
+            $('form').on('submit',function () {
+                return false;
+            });
+            $("#addPokemon").on('click',function () {
+                $.ajax({
+                    url: "/?route=index/unit&offset="+$offset,
+                    success: function(data){
+                        $offset += 10;
+                        $('.pokedex-list-data').append(data);
+                    }
+                });
+            })
+        })
+    </script>
 </div>

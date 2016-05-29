@@ -6,11 +6,11 @@ use \Exception;
 
 class PokedexModel
 {
-    public function findAll()
+    public function findAll($offset=0,$limit=10)
     {
 
         $db = DbConnection::getInstance()->getPdo();
-        $sth = $db->query('SELECT * FROM pokemon ORDER BY id LIMIT 20');
+        $sth = $db->query('SELECT * FROM pokemon ORDER BY id LIMIT '. $limit .' OFFSET '.$offset);
         $sth->execute();
         $data = $sth->fetchAll(PDO::FETCH_ASSOC);
         if (!$data) {

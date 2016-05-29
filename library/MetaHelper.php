@@ -7,7 +7,7 @@ abstract class MetaHelper
      * Генерация присваевание тайтлов
      */
 
-    private static $title = 'Mega site';
+    private static $title = 'Pokedex';
     const SEPARATOR = ' - ';
     public static function getTitle(){
 

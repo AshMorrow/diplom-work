@@ -24,7 +24,13 @@ class IndexController extends Controller
         $pokemon_data = $model->findAll();
         return $this->render('pokedex',$pokemon_data);
     }
-
+    
+    public function unitAction(Request $request){
+        $offset = $request->get('offset');
+        $model = new \model\PokedexModel();
+        $pokemon_data = $model->findAll($offset);
+        return $this->renderUnit('pokedexUnit',$pokemon_data);
+    }
     public function pokemonAction(Request $request){
         $model = new \model\PokedexModel();
         $pokemon_data = $model->getPokemon($request->get('name'));

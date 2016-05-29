@@ -20,6 +20,13 @@ abstract class Controller
         require  VIEW_DIR.'default_layout.phtml';
         return ob_get_clean();
     }
+    
+    protected function renderUnit($view_name,$param = []){
+        ob_start();
+        $tpl_dir = str_ireplace('Controller','',get_class($this));
+        require VIEW_DIR.$tpl_dir.DS.$view_name.'.phtml';
+        return ob_get_clean();
+    }
 
     public static function renderError($code,$massage){
         ob_start();

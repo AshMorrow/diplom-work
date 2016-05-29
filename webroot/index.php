@@ -14,6 +14,7 @@ define('CONF_DIR', ROOT . 'config' . DS);
 
 function __autoload($c_name){
     $file = "{$c_name}.php";
+    $file = str_ireplace('\\',DS,$file); //Как я мог забыть про linux....
     if(file_exists(ROOT.$file)){
        require ROOT.$file;
     }elseif(file_exists(CONTROLLER_DIR.$file))
