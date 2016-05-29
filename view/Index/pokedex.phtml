@@ -1,0 +1,35 @@
+<div class="center-container" >
+    <ul class="pokedex-list-data">
+        <?php
+        foreach ($param as $id => $pokemon_data) {
+        $pokemon_type = explode('/', $pokemon_data['type']);
+        ?>
+        <li class="col-xs-6 col-sm-4 col-md-3 wow  zoomInRight">
+            <figure>
+                <a href="?route=index/pokemon&name=<?=strtolower($pokemon_data['name'])?>">
+                    <img src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
+                </a>
+            </figure>
+            <div class="pokemon-info">
+                <p class="id">
+                    <span class="number-prefix">№</span><?= $pokemon_data['pokemon_id'] ?>
+                </p>
+                <h5><?= $pokemon_data['name'] ?></h5>
+                <?php
+                if (count($pokemon_type) > 1){
+                foreach ($pokemon_type as $type) {
+                    ?>
+                    <div class='abilities'><span class='pill background-color-<?=strtolower($type)
+                        ?>'><?=$type?></span></div>
+                    <?php
+                }}else{
+                    $type = strtolower($pokemon_type[0]);
+                    echo "<div class='abilities'>",
+                    "<span class='pill background-color-{$type}'>".ucfirst($type)."</span>",
+                        "</div>";
+            }
+                ?>
+        </li>
+        <?php } ?>
+    </ul>
+</div>

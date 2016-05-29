@@ -1,0 +1,8 @@
+<h1>Contact form</h1>
+<b><?=Session::getFlash();?></b>
+<form method="post" action="">
+    <input type="text" name="username" value="<?=$form->username;?>"><br>
+    <input type="email" name="email" value="<?=$form->email;?>"><br>
+    <textarea name="massage" id="" cols="30" rolw="10"><?=$from->massage?></textarea>
+    <input type="submit" name="submit">
+</form>

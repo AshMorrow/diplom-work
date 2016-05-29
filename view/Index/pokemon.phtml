@@ -1,0 +1,74 @@
+<?php
+$pokemon_data = $param[0];
+$pokemon_type = explode('/', $pokemon_data['type']);
+$pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
+\library\MetaHelper::setTitle($pokemon_data['name']);
+?>
+<div class="pokedex-list-data">
+    <div class="col-sm-6">
+        <figure>
+            <img src="/webroot/img/pokedex/full/<?= $pokemon_data['pokemon_id'] ?>.png">
+        </figure>
+        <div class="pokemon-stats-info">
+            <h3>Параметры</h3>
+            <ul>
+                <li>ОЖ: <?= $pokemon_data['hp'] ?></li>
+                <li>Атака: <?= $pokemon_data['attack'] ?></li>
+                <li>Защита: <?= $pokemon_data['defense'] ?></li>
+                <li>Особая Атака: <?= $pokemon_data['special_attack'] ?></li>
+                <li>Особая Защита: <?= $pokemon_data['special_defense'] ?></li>
+                <li>Скорость: <?= $pokemon_data['speed'] ?></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <p>
+            <?= $pokemon_data['descriptionX'] ?>
+        </p>
+        <div class="color-lightblue">
+            <ul>
+                <li>Рост: <?= $pokemon_data['height'] ?></li>
+                <li>Вес: <?= $pokemon_data['weight'] ?></li>
+                <li>Пол: <?= $pokemon_data['gender'] ?></li>
+                <li>Вид: <?= $pokemon_data['category'] ?></li>
+                <li>Таланты: <?= $pokemon_data['abilities'] ?></li>
+            </ul>
+        </div>
+        <?php
+        if (count($pokemon_type) > 1) {
+            foreach ($pokemon_type as $type) {
+                ?>
+                <div class='abilities'><span class='pill background-color-<?= strtolower($type)
+                    ?>'><?= $type ?></span></div>
+                <?php
+            }
+        } else {
+            $type = strtolower($pokemon_type[0]);
+            echo "<div class='abilities'>",
+                "<span class='pill background-color-{$type}'>" . ucfirst($type) . "</span>",
+            "</div>";
+        }
+        ?>
+        <div class="dtm-weaknesses">
+            <h3>Слабость</h3>
+            <ul>
+
+                <?php
+                if (count($pokemon_weaknesses) > 1) {
+                    foreach ($pokemon_weaknesses as $weaknesses) {
+                        ?>
+                        <div class='abilities'><span class='pill background-color-<?= strtolower($weaknesses)
+                            ?>'><?= $weaknesses ?></span></div>
+                        <?php
+                    }
+                } else {
+                    $weaknesses = strtolower($pokemon_weaknesses[0]);
+                    echo "<div class='abilities'>",
+                        "<span class='pill background-color-{$weaknesses}'>" . ucfirst($weaknesses) . "</span>",
+                    "</div>";
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+</div>
