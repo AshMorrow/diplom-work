@@ -1,7 +1,8 @@
-body{
-    background:url("/webroot/img/body_bg.png");
+body {
+    background: url("/webroot/img/body_bg.png");
 }
-.bg-color-white{
+
+.bg-color-white {
     background-color: #fff;
     display: block;
     margin: 0 auto;
@@ -9,33 +10,42 @@ body{
     max-width: 1024px;
     width: 100%;
 }
-.container-bg{
-    background:#fff url("/webroot/img/container_bg.png");
+
+.container-bg {
+    background: #fff url("/webroot/img/container_bg.png");
 }
-.color-lightblue{
+
+.color-lightblue {
     background-color: #30a7d7;
     color: #fff;
 }
-.clearfix{
+
+.clearfix {
     clear: both !important;
 }
 
+.color-black {
+    color: #000;
+}
 
 /************************************************/
 /*******************POKEDEX**********************/
 /************************************************/
-.center-container{
-    margin:0 auto;
+.center-container {
+    margin: 0 auto;
     float: none !important;
 }
-.pokedex-list-data{
+
+.pokedex-list-data {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.pokedex-list-data li{
+
+.pokedex-list-data li {
     margin-bottom: 30px;
 }
+
 .pokedex-list-data li figure {
     background: #F2F2F2;
     float: left;
@@ -43,12 +53,14 @@ body{
     position: relative;
     border-radius: 5px;
 }
+
 .pokedex-list-data h5 {
     color: #313131;
     text-transform: none;
     font-size: 145%;
     margin-bottom: 5px;
 }
+
 .pokedex-list-data .abilities span {
     border-radius: 3px;
     line-height: 18px;
@@ -60,7 +72,8 @@ body{
     font-size: 11px;
     text-align: center;
 }
-.pokemon-stats-info{
+
+.pokemon-stats-info {
     background-color: #a4a4a4;
     border-radius: 10px;
     display: block;
@@ -68,19 +81,174 @@ body{
     margin: 1em 0;
     width: 100%;
 }
-#addPokemon{
+.pokedex-pokemon-details-right h3.version {
+    font-family: "Flexo-Medium",arial,sans-serif;
+    color: #212121;
+    float: left;
+    font-size: 112.5%;
+    line-height: 150%;
+    margin: 1.125em 0 2em;
+    text-transform: none;
+}
+.pokemon-ability-info {
+    list-style: none;
+}
+
+.hchfx {
+    clear: both;
+    width: 100%;
+    padding: 10px 0px;
+}
+.pokemon-spec{
+    display: table;
+    min-height: 213px;
+    width: 100%;
+    border-radius: 5px;
+}
+.attribute-title{
+    clear: both;
+    color: #fff;
+    float: left;
+    font-size: 100%;
+    margin: 1.25em 0 0 1.25em;
+    text-transform: none;
+    white-space: normal;
+    word-break: break-word;
+}
+.attribute-value{
+    clear: both;
+    color: #212121;
+    float: left;
+    font-size: 125%;
+    margin: 0.75em 0 0 1em;
+    white-space: normal;
+    word-break: break-word;
+}
+.pokedex-pokemon-attributes span a {
+    color: white;
+    display: block;
+    float: left;
+    line-height: 100%;
+    padding: 0.5em 0em;
+    width: 100%;
+    font-size: 14px;
+}
+.pokedex-pokemon-attributes span{
+    float: left;
+    margin-right: -100%;
+    width: 31.29%;
+    border-radius: 5px;
+    margin: 0.5em 0.5em 0 0;
+    padding: 0;
+    text-align: center;
+}
+.pokemon-stats-info h3 {
+    clear: both;
+    color: #313131;
+    font-size: 100%;
+    margin: 0.75em 1.5em 1.5em;
+    text-transform: none;
+}
+ul.abil{
+    list-style: none;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 55px;
+    margin: 0px 5px;
+    padding: 0;
+}
+ul.abil li{
+    margin-bottom: 3px;
+}
+ul.abil li.type-name{
+    font-weight: bold;
+    color: #212121;
+    float: left;
+    font-size: 62.5%;
+    text-align: center;
+    text-transform: none;
+    width: 100%;
+}
+.clear_param{
+    background: rgb(255, 255, 255);
+    height: 8px;
+    width: 55px;
+    position: relative;
+    z-index: 6;
+}
+.full_param{
+    background: #30a7d7;
+    height: 0.5em;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+/************************************************/
+/***************Description*****r****************/
+/************************************************/
+.version-descriptions p.active {
+    display: block;
+}
+.version-descriptions p {
+    color: #212121;
+    font-size: 112.5%;
+    line-height: 150%;
+    display: none;
+}
+/************************************************/
+/***************Version btn Color****************/
+/************************************************/
+.version-labels .version-label.version-y.active {
+    border-color: #eb859a;
+}
+.version-labels .version-label.version-x.active{
+    border-color: #17adff;
+}
+.version-labels .version-label.version-y {
+    background-color: #dd2d51;
+}
+.version-labels .version-label.version-x {
+    background-color: #0072b0;
+}
+.version-labels .version-label{
+    color: #fff;
+    font-size: 14px;
+    padding: 0px 3px;
+    font-weight: 600;
+}
+
+.version-labels .version-label {
+    font-family: "Flexo-Bold",arial,sans-serif;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 32px;
+    cursor: pointer;
+    float: left;
+    height: 34px;
+    line-height: 27px;
+    margin: 0.75em 0 0.75em 0.5em;
+    text-transform: none;
+    text-align: center;
+    vertical-align: middle;
+    width: 34px;
+}
+/************************************/
+#addPokemon {
     padding: 7px 90px;
     border: 0px none;
     border-radius: 5px;
-    box-shadow: 0px 1px 2px rgb(0, 0, 0);
     clear: both;
     margin: 10px auto;
     transition: all 0.3s;
 }
-#addPokemon:hover{
+
+#addPokemon:hover {
     box-shadow: 0px 1px 2px rgb(0, 0, 0) inset;
     transition: all 0.3s;
 }
+
 /************************************************/
 /*******************Type Color*******************/
 /************************************************/
@@ -104,6 +272,7 @@ body{
     background-color: #53a4cf;
     color: #fff;
 }
+
 .background-color-fairy {
     background: -webkit-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
     background: -ms-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
@@ -133,6 +302,7 @@ body{
     background-color: #7b62a3;
     color: #fff;
 }
+
 .background-color-ground {
     background: -webkit-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
     background: -ms-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
@@ -142,6 +312,7 @@ body{
     background-color: #f7de3f;
     color: #212121;
 }
+
 .background-color-normal {
     background: -webkit-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
     background: -ms-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
@@ -151,6 +322,7 @@ body{
     background-color: #a4acaf;
     color: #212121;
 }
+
 .background-color-psychic {
     background: -webkit-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
     background: -ms-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
@@ -160,6 +332,7 @@ body{
     background-color: #f366b9;
     color: #fff;
 }
+
 .background-color-steel {
     background: -webkit-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
     background: -ms-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
@@ -169,6 +342,7 @@ body{
     background-color: #9eb7b8;
     color: #212121;
 }
+
 .background-color-dark {
     background: -webkit-linear-gradient(180deg, #707070 50%, #707070 50%);
     background: -ms-linear-gradient(180deg, #707070 50%, #707070 50%);
@@ -178,6 +352,7 @@ body{
     background-color: #707070;
     color: #fff;
 }
+
 .background-color-electric {
     background: -webkit-linear-gradient(180deg, #eed535 50%, #eed535 50%);
     background: -ms-linear-gradient(180deg, #eed535 50%, #eed535 50%);
@@ -187,6 +362,7 @@ body{
     background-color: #eed535;
     color: #212121;
 }
+
 .background-color-fighting {
     background: -webkit-linear-gradient(180deg, #d56723 50%, #d56723 50%);
     background: -ms-linear-gradient(180deg, #d56723 50%, #d56723 50%);
@@ -196,6 +372,7 @@ body{
     background-color: #d56723;
     color: #fff;
 }
+
 .background-color-flying {
     background: -webkit-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
     background: -ms-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
@@ -205,6 +382,7 @@ body{
     background-color: #3dc7ef;
     color: #212121;
 }
+
 .background-color-grass {
     background: -webkit-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
     background: -ms-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
@@ -214,6 +392,7 @@ body{
     background-color: #9bcc50;
     color: #212121;
 }
+
 .background-color-ice {
     background: -webkit-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
     background: -ms-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
@@ -266,6 +445,7 @@ body{
     max-width: 1024px;
     width: 100%;
 }
+
 .footer-divider .footer-notch {
     float: left;
     margin-right: -100%;
@@ -275,14 +455,17 @@ body{
     height: 6px;
     position: relative;
 }
+
 .footer-divider .footer-notch::before {
     background: transparent url("/webroot/img/notch-top-left.png") no-repeat;
     left: -11px;
 }
+
 .footer-divider .footer-notch::after {
     background: transparent url("/webroot/img/notch-top-right.png") no-repeat;
     right: -11px;
 }
+
 .footer-divider .footer-notch::before, .footer-divider .footer-notch::after {
     content: '';
     height: 6px;
@@ -290,6 +473,7 @@ body{
     bottom: 0;
     width: 12px;
 }
+
 /************************************************/
 /*******************STIKI FOOTER*****************/
 /************************************************/
@@ -297,18 +481,22 @@ body{
 html, body {
     height: 100%;
 }
+
 .page-wrap {
     min-height: 100%;
     /* equal to footer height */
     margin-bottom: -142px;
 }
+
 .page-wrap:after {
     content: "";
     display: block;
 }
+
 .site-footer, .page-wrap:after {
     height: 142px;
 }
+
 .site-footer {
     background: #1f1f1f;
 }
