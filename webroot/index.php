@@ -31,7 +31,10 @@ try {
 
     $request = new Request();
     $route = $request->get('route');
-    if (is_null($route)) {
+    if($request->get('search')){
+        $route = "index/search";
+
+    }elseif (is_null($route)) {
         $route = "index/pokedex";
     }
 
@@ -50,8 +53,3 @@ try {
 
 echo $content;
 
-//
-//echo "<hr>";
-////require VIEW_DIR . 'default_layout.phtml';
-//var_dump($route,$controller,$action);
-//var_dump($_SERVER['REQUEST_URI']);

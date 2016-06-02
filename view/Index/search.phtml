@@ -1,0 +1,61 @@
+<div class="pokedex-filter">
+    <div class="pokedex-filter-header">
+        <div class="filter-text-search col-sm-5 col-lg-offset-1">
+            <label>Имя или номер</label>
+            <form method="get" action="http://pokemon/?route=index/search">
+                <span style="position: relative; display: inline-block;" class="twitter-typeahead">
+                <input id="searchInput" class="button-white tt-input" type="text" name="search">
+                </span>
+                <input class="button button-search" value="Поиск" id="search" type="submit">
+            </form>
+        </div>
+        <div class="col-sm-5 col-lg-offset-0">
+            <div class="content-block content-block-full">
+                <div class="banner banner-green">
+                    <h2>Сохраняй своих пойманных Покемонов с помощью учётной записи в Клубе Тренеров Покемонов.</h2>
+                    <p>
+                        <a href="/?route=security/login">Войди в систему</a>
+                        или <a href="/?route=security/registration">Зарегистрируйся</a> и начни сегодня!</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="center-container">
+
+    <ul class="pokedex-list-data">
+        <?php
+        foreach ($param as $id => $pokemon_data) {
+            $pokemon_type = explode('/', $pokemon_data['type']);
+            ?>
+            <li class="col-xs-6 col-sm-4 col-md-3 wow  zoomInRight">
+                <figure>
+                    <a href="?route=index/pokemon&name=<?= strtolower($pokemon_data['name']) ?>">
+                        <img src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
+                    </a>
+                </figure>
+                <div class="pokemon-info">
+                    <p class="id">
+                        <span class="number-prefix">№</span><?= $pokemon_data['pokemon_id'] ?>
+                    </p>
+                    <h5><?= $pokemon_data['name'] ?></h5>
+                    <?php
+                    if (count($pokemon_type) > 1) {
+                        foreach ($pokemon_type as $type) {
+                            ?>
+                            <div class='abilities'><span class='pill background-color-<?= strtolower($type)
+                                ?>'><?= $type ?></span></div>
+                            <?php
+                        }
+                    } else {
+                        $type = strtolower($pokemon_type[0]);
+                        echo "<div class='abilities'>",
+                            "<span class='pill background-color-{$type}'>" . ucfirst($type) . "</span>",
+                        "</div>";
+                    }
+                    ?>
+            </li>
+        <?php } ?>
+    </ul>
+</div>

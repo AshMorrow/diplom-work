@@ -19,10 +19,21 @@ class IndexController extends Controller
        return $this->render('index',$param);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     * Гравная стрница
+     */
     public function pokedexAction(Request $request){
         $model = new \model\PokedexModel();
         $pokemon_data = $model->findAll();
         return $this->render('pokedex',$pokemon_data);
+    }
+    public function searchAction(Request $request){
+        $model = new \model\SearchModel();
+        $pokemon_data = $model->UserPokemonSearch($request->get('search'));
+        return $this->render('search',$pokemon_data);
     }
     
     public function unitAction(Request $request){

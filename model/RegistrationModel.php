@@ -22,7 +22,6 @@ class RegistrationModel
     }
 
     public function add($user_data){
-        var_dump($user_data);
         $db = DbConnection::getInstance()->getPdo();
         $sth = $db->prepare("INSERT INTO user (nick_name, birthday, email, password) values (:nick_name, :birthday, :email, :password)");
         return $sth->execute($user_data);

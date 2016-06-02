@@ -44,6 +44,94 @@ table.edit-list td{
 /************************************************/
 /*******************POKEDEX**********************/
 /************************************************/
+.pokedex-filter-header {
+    background: #313131;
+    float: left;
+    width: 100%;
+}
+.pokedex-filter-header .filter-text-search .button-search {
+    float: left;
+    margin-right: -100%;
+    width: 12.95%;
+    margin-left: 79.8025%;
+    background-image: url("/webroot/img/input-search-bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    clear: none;
+    text-indent: -9999px;
+    height: 48px;
+    position: relative;
+    top: 2px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #ee6b2f;
+}
+.pokedex-filter-header .filter-text-search .twitter-typeahead {
+    float: left;
+    margin-right: -100%;
+    width: 72.5425%;
+    border: 3px solid #616161;
+    clear: both;
+    margin-top: 0.325em;
+    background-color: #fff;
+    border-radius: 5px;
+}
+#searchInput{
+    width: 100%;
+}
+.pokedex-filter-header .filter-text-search label {
+    float: left;
+    font-size: 167.5%;
+    text-transform: none;
+    width: 100%;
+    color: #fff;
+}
+.filter-text-search label{
+    margin-top: 20px;
+}
+.pokedex-filter {
+    clear: both;
+    background: #616161;
+    border-color: #212121;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+}
+.banner-green {
+    -webkit-transition: background-color .1s linear;
+    -ms-transition: background-color .1s linear;
+    -moz-transition: background-color .1s linear;
+    -o-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+    background-color: #4dad5b;
+    border-radius: 5px;
+}
+.banner-green:hover{
+    -webkit-transition: background-color .1s linear;
+    -ms-transition: background-color .1s linear;
+    -moz-transition: background-color .1s linear;
+    -o-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+    background-color: #369143;
+}
+.banner-green h2{
+    font-size: 125%;
+    line-height: 125%;
+    color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+    padding: 10px 10px 0px;
+}
+.banner-green p{
+    padding: 10px;
+}
+.banner-green a {
+    color: #2e6636;
+}
+/*****************/
 .center-container {
     margin: 0 auto;
     float: none !important;
