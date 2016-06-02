@@ -7,13 +7,7 @@ use \library\Password;
 use \model\LoginForm;
 use \model\UserModel;
 
-/**
- * Created by PhpStorm.
- * User: KoRaG
- * Date: 05.05.2016
- * Time: 21:39
- */
-class SecurityController extends Controller // В контролере находится рендер
+class SecurityController extends Controller
 {
     public function loginAction(Request $request){
         $form = new LoginForm($request);
@@ -24,13 +18,11 @@ class SecurityController extends Controller // В контролере нахо�
                 $email = $form->email;
                 if($model->find($email,$password)){
                     Session::set('user',$email);
-                    //Session::setFlash('Signed in');
-                    Router::redirect('/index.php?route=security/admin');
+                    Session::set('loged',true);
+                    Router::redirect('/index.php?route=user/welcome');
                 }
 
                 Session::setFlash('User not Found');
-                //Router::redirect('/index.php?route=security/login');
-
             }
 
             Session::setFlash('You idiot');
@@ -38,8 +30,38 @@ class SecurityController extends Controller // В контролере нахо�
         return $this->render('index',compact($form));
 
     }
+    
+    public function registrationAction(Request $request){
+        $form = new \model\RegistrationForm($request);
+        if($request->isPost() && $form->is_valid()){
+            $model = new \model\RegistrationModel();
+            $password = new Password($form->password);
+            $email = $form->email;
+            if(!$model->find($form->nick_name,$email)){
+                $user_data = [
+                    'nick_name' => $form->nick_name,
+                    'birthday' => $form->birthday,
+                    'email' => $email,
+                    'password' => (string)$password
+                ];
+                if($model->add($user_data)){
+                    Session::setFlash('registered');
+                    Session::set('user',$email);
+                    Router::redirect('/index.php?route=security/admin');
+                }
+            }
+
+        }
+        return $this->render('registration',compact($form));
+        
+    }
 
     public function adminAction(Request $request){
         return $this->render('admin');
+    }
+
+    public function logoutAction(){
+        Session::destroy();
+        Router::redirect('/');
     }
 }

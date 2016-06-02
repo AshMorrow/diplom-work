@@ -35,9 +35,10 @@ class Request{
      */
     
     public function get($name){
-        if($this->isGet()){
+        if($this->isGet() && isset($this->get[$name])){
             return $this->get[$name];
-
+        }else{
+            return null;
         }
     }
     

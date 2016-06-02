@@ -1,0 +1,42 @@
+<div class="center-container">
+    <table class="pokedex-list-data table edit-list">
+        <?php
+        foreach ($param as $id => $pokemon_data) {
+            $pokemon_type = explode('/', $pokemon_data['type']);
+            ?>
+            <tr>
+                <td>
+                    <figure class="edit-pokemon">
+                        <a href="/?route=admin/pokemonedit&name=<?= strtolower($pokemon_data['name']) ?>">
+                            <img src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
+                        </a>
+                    </figure>
+                </td>
+                <td>
+                    <div class="pokemon-info">
+                        <p class="id">
+                            <span class="number-prefix">№</span><?= $pokemon_data['pokemon_id'] ?>
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="pokemon-info">
+
+                        <h5><?= $pokemon_data['name'] ?></h5>
+                    </div>
+                </td>
+                <td>
+                    <a href="/?route=admin/pokemonedit&name=<?= $pokemon_data['name'] ?>" class="btn btn-info">Редактировать</a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <?= \library\PagenationRender::render($pokemon_data['p_count']) ?>
+        </ul>
+    </div>
+    <script>
+
+    </script>

@@ -3,7 +3,7 @@
 <head>
     <title><?= \library\MetaHelper::getTitle(); ?></title>
     <link href="/webroot/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="/webroot/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/webroot/css/style.css">
     <link rel="stylesheet" href="/webroot/css/animate.css">
 
@@ -11,18 +11,19 @@
     <script src="/webroot/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="/webroot/js/wow.min.js"></script>
+    <script src="/webroot/js/jquery.maskedinput.min.js"></script>
+    <script src="/webroot/js/jquery.twbsPagination.min.js"></script>
     <script>
         new WOW().init();
     </script>
 </head>
 <body>
+<div class="page-wrap">
 <section class="container container-bg">
 
     <header>
-        <nav class="navbar navbar-default">
-            <a href="/">Home</a>
-<!--            <a href="/index.php?route=index/contact">Contact</a>-->
-<!--            <a href="/index.php?route=security/login">Login</a>-->
+        <nav class="navbar nav">
+            <?=\library\MenuRender::render()?>
         </nav>
     </header>
     <div class="bg-color-white">
@@ -33,6 +34,7 @@
 </section>
 <div class="footer-divider">
     <span class="footer-notch"></span>
+</div>
 </div>
 <footer class="site-footer">
     <div class="container">

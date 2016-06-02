@@ -1,7 +1,7 @@
 <h1>Login</h1>
-<b><?=Session::getFlash();?></b>
+<b><?=\library\Session::getFlash();?></b>
 <form method="post" action="">
-    <input type="email" name="email" value="<?=$form?>">
+    <input type="email" name="email" value="">
     <input type="password" name="password">
     <button>Sign in</button>
 </form>

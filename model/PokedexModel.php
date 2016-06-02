@@ -21,6 +21,7 @@ class PokedexModel
         return $pokemon_data;
     }
 
+   
     public function getPokemon($name){
         $db = DbConnection::getInstance()->getPdo();
         $sth = $db->prepare('SELECT * FROM pokemon WHERE name = ?');

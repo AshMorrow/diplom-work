@@ -1,0 +1,9 @@
+<?php
+use \library\Session;
+if(Session::get('user')){
+    ?>
+    Привет <?=Session::get('user')?>
+<?php
+}else{
+    echo 'залогинтесь';
+}

@@ -26,8 +26,6 @@ function __autoload($c_name){
     }
 }
 try {
-   // ob_start(); // непонимаю почепу при отправке админ формы неудается сделать редирект
-
     \library\Session::start();
     \library\Config::setFromXML('db.xml');
 

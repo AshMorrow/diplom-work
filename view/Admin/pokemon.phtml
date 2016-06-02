@@ -1,0 +1,163 @@
+<?php
+$pokemon_data = $param[0];
+$pokemon_type = explode('/', $pokemon_data['type']);
+$pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
+\library\MetaHelper::setTitle($pokemon_data['name']);
+?>
+<div>
+    <figure>
+        <img class='img-responsive' src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
+        <figcaption><h1 style="text-align: center"><?= $pokemon_data['name'] ?>
+                № <?= $pokemon_data['pokemon_id'] ?></h1></figcaption>
+    </figure>
+</div>
+<div class="pokedex-list-data">
+    <form>
+        <table class="table">
+            <tr>
+                <td>
+                    <span>Имя</span>
+                </td>
+                <td>
+                    <input type="text" name="name" value="<?= $pokemon_data['name'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Номер</span>
+                </td>
+                <td>
+                    <input type="text" name="pokemon_id" value="<?= $pokemon_data['pokemon_id'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Описание X</span>
+                </td>
+                <td>
+                    <textarea class="form-control" name="descriptionX"><?= $pokemon_data['descriptionX'] ?></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Описание Y</span>
+                </td>
+                <td>
+                    <textarea class="form-control" name="descriptionX"><?= $pokemon_data['descriptionY'] ?></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Слабости</span>
+                </td>
+                <td>
+                    <input type="text" name="weaknesses" value="<?= $pokemon_data['weaknesses'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Тип</span>
+                </td>
+                <td>
+                    <input type="text" name="type" value="<?= $pokemon_data['type'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Эволюция</span>
+                </td>
+                <td>
+                    <input type="text" name="evolutions" value="<?= $pokemon_data['evolutions'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>HP</span>
+                </td>
+                <td>
+                    <input type="text" name="hp" value="<?= $pokemon_data['hp'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Атака</span>
+                </td>
+                <td>
+                    <input type="text" name="attack" value="<?= $pokemon_data['attack'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Защита</span>
+                </td>
+                <td>
+                    <input type="text" name="defense" value="<?= $pokemon_data['defense'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Спец. атака</span>
+                </td>
+                <td>
+                    <input type="text" name="special_attack" value="<?= $pokemon_data['special_attack'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Спец. защита</span>
+                </td>
+                <td>
+                    <input type="text" name="special_defense" value="<?= $pokemon_data['special_defense'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Скорость</span>
+                </td>
+                <td>
+                    <input type="text" name="speed" value="<?= $pokemon_data['speed'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Рост</span>
+                </td>
+                <td>
+                    <input type="text" name="height" value="<?= $pokemon_data['height'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Вес</span>
+                </td>
+                <td>
+                    <input type="text" name="weight" value="<?= $pokemon_data['weight'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Пол</span>
+                </td>
+                <td>
+                    <input type="text" name="gender" value="<?= $pokemon_data['gender'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Вид</span>
+                </td>
+                <td>
+                    <input type="text" name="category" value="<?= $pokemon_data['category'] ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Таланты</span>
+                </td>
+                <td>
+                    <input type="text" name="abilities" value="<?= $pokemon_data['abilities'] ?>">
+                </td>
+            </tr>
+        </table>
+
+    </form>
