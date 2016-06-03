@@ -11,11 +11,26 @@ if(\library\Session::get('admin')) {
     <b><?=\library\Session::getFlash();?></b>
     <form method="post" action="">
         <input type="hidden" name = 'id' value="<?=$param['id']?>">
-        <input placeholder="Ник" class="form-control" type="text" name="nick_name" value="<?=$param['nick_name']?>">
-        <input type="text" placeholder="mm-dd-yyyy" name="birthday" class="form-control" id="birthday" value="<?=$param['birthday']?>">
-        <input placeholder="Email" class="form-control" type="email" name="email" value="<?=$param['email']?>">
-        <input placeholder="Пароль" class="form-control" type="password" name="password" >
-        <input placeholder="Admin" class="form-control" type="text" name="admin" value="<?=$param['admin']?>">
+        <div class="form-group">
+            <label for="nick_name">Ник</label>
+            <input id="nick_name" placeholder="Ник" class="form-control" type="text" name="nick_name" value="<?=$param['nick_name']?>">
+        </div>
+        <div class="form-group">
+            <label for="birthday">Возраст</label>
+            <input type="text" placeholder="mm-dd-yyyy" name="birthday" class="form-control" id="birthday" value="<?=$param['birthday']?>">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input id="Email" placeholder="Email" class="form-control" type="email" name="email" value="<?=$param['email']?>">
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input id="password" placeholder="Пароль" class="form-control" type="password" name="password">
+        </div>
+        <div class="form-group">
+            <label for="admin">Админ</label>
+            <input id="admin" placeholder="Admin" class="form-control" type="text" name="admin"  value="<?=$param['admin']?>">
+        </div>
         <button class="btn btn-info">Изменить</button>
     </form>
     <?php

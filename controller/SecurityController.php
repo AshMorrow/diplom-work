@@ -27,7 +27,7 @@ class SecurityController extends Controller
                 Session::setFlash('User not Found');
             }
 
-            Session::setFlash('You idiot');
+            Session::setFlash('Что то нетак');
         }
         return $this->render('index',compact($form));
 
@@ -60,5 +60,10 @@ class SecurityController extends Controller
         }
         return $this->render('registration',compact($form));
         
+    }
+
+    public function logoutAction(){
+        Session::destroy();
+        Router::redirect('/');
     }
 }
