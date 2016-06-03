@@ -30,6 +30,7 @@ class IndexController extends Controller
         $pokemon_data = $model->findAll();
         return $this->render('pokedex',$pokemon_data);
     }
+
     public function searchAction(Request $request){
         $model = new \model\SearchModel();
         $pokemon_data = $model->UserPokemonSearch($request->get('search'));
@@ -42,37 +43,12 @@ class IndexController extends Controller
         $pokemon_data = $model->findAll($offset);
         return $this->renderUnit('pokedexUnit',$pokemon_data);
     }
+
+
     public function pokemonAction(Request $request){
         $model = new \model\PokedexModel();
         $pokemon_data = $model->getPokemon($request->get('name'));
         return $this->render('pokemon',$pokemon_data);
-    }
-
-    public function contactAction(Request $request){
-        $form = new ContactForm($request);
-        $datetime = new \DateTime();
-        if ($request->isPost()){ // была ли отправлена форма
-            if($form->isValid()){
-                
-                
-                (new FeedbackModel())->save([
-                   'id' => null,
-                    'username' => $form->username,
-                    'email' => $form->email,
-                    'massage' => $form->massage,
-                    'created' => $datetime->format('Y-m-d H:i:s'),
-                    'ip' => $request->getIpAddres()
-                ]);
-                Session::setFlash('Massage sent');
-                Router::redirect('/index.php?route=index/contact');
-            }
-            Session::setFlash('Field the field');
-        }
-
-        // Вернет масси с указаными ключами значения который возьмет из одноименных
-        // переменных
-        $args = compact('form');
-        return $this->render('contact',$args);
     }
 
 
