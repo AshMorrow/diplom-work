@@ -16,9 +16,11 @@ class SecurityController extends Controller
                 $model = new UserModel();
                 $password = new Password($form->password);
                 $email = $form->email;
-                if($model->find($email,$password)){
+                $user = $model->find($email,$password);
+                if($user){
                     Session::set('user',$email);
                     Session::set('loged',true);
+                    Session::set('admin',(bool)$user['admin']);
                     Router::redirect('/index.php?route=user/welcome');
                 }
 
@@ -46,8 +48,10 @@ class SecurityController extends Controller
                 ];
                 if($model->add($user_data)){
                     Session::setFlash('registered');
-                    Session::set('user',$email);
-                    Router::redirect('/index.php?route=security/admin');
+                    Session::set('user',$form->nick_name);
+                    Session::set('admin',false);
+                    Session::set('loged',true);
+                    Router::redirect('/');
                 }
             }
 

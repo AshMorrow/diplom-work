@@ -1,4 +1,10 @@
-<div class="center-container">
+<?php
+
+if(\library\Session::get('admin')) {
+    $count = $param['count'];
+    unset($param['count']);
+?>
+    <div class="center-container">
     <table class="pokedex-list-data table edit-list">
         <?php
         foreach ($param as $id => $pokemon_data) {
@@ -34,9 +40,8 @@
 
     <div class="text-center">
         <ul class="pagination">
-            <?= \library\PagenationRender::render(720) ?>
+            <?= \library\PagenationRender::render("/?route=admin/pokemonselect&offset=", $count) ?>
         </ul>
     </div>
-    <script>
-
-    </script>
+    <?php
+}

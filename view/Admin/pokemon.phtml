@@ -1,35 +1,37 @@
 <?php
-$pokemon_data = $param[0];
-$pokemon_type = explode('/', $pokemon_data['type']);
-$pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
-\library\MetaHelper::setTitle($pokemon_data['name']);
-?>
-<b><?=\library\Session::getFlash();?></b>
-<table class="pokedex-list-data table edit-list">
-    <tr>
-        <td>
-            <figure class="edit-pokemon">
-                <img class='img-responsive' src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
-            </figure>
-        </td>
-        <td>
-            <div class="pokemon-info">
-                <p class="id">
-                    <span class="number-prefix">№</span><?= $pokemon_data['pokemon_id'] ?>
-                </p>
-            </div>
-        </td>
-        <td>
-            <div class="pokemon-info">
+if(\library\Session::get('admin')) {
+    $pokemon_data = $param[0];
+    $pokemon_type = explode('/', $pokemon_data['type']);
+    $pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
+    \library\MetaHelper::setTitle($pokemon_data['name']);
+    ?>
+    <b><?= \library\Session::getFlash(); ?></b>
+    <table class="pokedex-list-data table edit-list">
+        <tr>
+            <td>
+                <figure class="edit-pokemon">
+                    <img class='img-responsive'
+                         src="/webroot/img/pokedex/detail/<?= $pokemon_data['pokemon_id'] ?>.png">
+                </figure>
+            </td>
+            <td>
+                <div class="pokemon-info">
+                    <p class="id">
+                        <span class="number-prefix">№</span><?= $pokemon_data['pokemon_id'] ?>
+                    </p>
+                </div>
+            </td>
+            <td>
+                <div class="pokemon-info">
 
-                <h5><?= $pokemon_data['name'] ?></h5>
-            </div>
-        </td>
-    </tr>
-</table>
-<div>
-</div>
-<div class="pokedex-list-data">
+                    <h5><?= $pokemon_data['name'] ?></h5>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div>
+    </div>
+    <div class="pokedex-list-data">
     <form method="post" action="">
         <input type="hidden" name="id" value="<?= $pokemon_data['id'] ?>">
         <table class="table">
@@ -185,3 +187,5 @@ $pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
         </table>
 
     </form>
+    <?php
+}

@@ -6,8 +6,10 @@ class AdminController extends \library\Controller
     public function pokemonselectAction(Request $request)
     {
         $model = new \model\PokedexModel();
+        $count = $model->_count('pokemon');
         $request->get('offset') ? $offset = $request->get('offset') : $offset = 0;
         $pokemon_data = $model->findAll($offset);
+        $pokemon_data['count'] = $count['count'];
         return $this->render('pokemonlist', $pokemon_data);
 
     }
@@ -22,13 +24,29 @@ class AdminController extends \library\Controller
         return $this->render('pokemon', $pokemon_data);
     }
 
+    public function usereditAction(Request $request)
+    {
+        $model = new \model\UserModel();
+        $user_data = $model->getPokemon($request->get('name'));
+        if ($request->isPost()) {
+            $this->pokemonupdateAction($request);
+        }
+        return $this->render('useredit', $user_data);
+    }
+
+    public function userlistAction(){
+        $model = new \model\UserModel();
+        $user_data = $model->findAll();
+        return $this->render('userlist', $user_data);
+    }
+
     public function pokemonupdateAction(Request $request)
     {
         $form = new \model\PokemonForm($request);
         if ($request->isPost()) {
             $model = new \model\PokemonModel();
-            $user_data = [
-                'id' => $request->post('id'),
+            $id = $request->post('id');
+            $pokemon_data = [
                 'name' => $request->post('name'),
                 'pokemon_id' => $request->post('pokemon_id'),
                 'descriptionX' => $request->post('descriptionX'),
@@ -48,9 +66,9 @@ class AdminController extends \library\Controller
                 'category' => $request->post('category'),
                 'abilities' => $request->post('abilities')
             ];
-            if($model->update($user_data)){
+            if($model->update($id,$pokemon_data)){
                 \library\Session::setFlash('Сохранено');
-                \library\Router::redirect('/index.php?route=index/contact');
+                \library\Router::redirect($_SERVER['REQUEST_URI']);
             }else{
                 \library\Session::setFlash('что то нетак');
             }

@@ -21,6 +21,17 @@ class PokedexModel
         return $pokemon_data;
     }
 
+    public function _count($table = 'pokemon'){
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->query('SELECT COUNT(*) as count FROM '.$table);
+        $sth->execute();
+        $data = $sth->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            throw new Exception('empty array', 404);
+        }
+        $pokemon_data = $data;
+        return $pokemon_data;
+    }
    
     public function getPokemon($name){
         $db = DbConnection::getInstance()->getPdo();

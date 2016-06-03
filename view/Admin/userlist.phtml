@@ -1,0 +1,53 @@
+<?php
+if(\library\Session::get('admin')) {
+?>
+
+<div class="center-container">
+    <table class="pokedex-list-data table edit-list">
+        <tr>
+            <th>
+                Ник
+            </th>
+            <th>
+                День рождения
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Admin
+            </th>
+            <td>
+                <a href="/?route=admin/pokemonedit&name=<?= ['name'] ?>" class="btn btn-info">Добавить</a>
+            </td>
+        </tr>
+        <?php
+        foreach ($param as $id => $user_data) {
+            ?>
+            <tr>
+                <td>
+                    <?=$user_data['nick_name']?>
+                </td>
+                <td>
+                    <?=$user_data['birthday']?>
+                </td>
+                <td>
+                    <?=$user_data['email']?>
+                </td>
+                <td>
+                    <?=$user_data['admin']?>
+                </td>
+                <td>
+                    <a href="/?route=admin/pokemonedit&name=<?= ['name'] ?>" class="btn btn-warning">Редактировать</a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <?= \library\PagenationRender::render("/?route=admin/userlist&offset=",1) ?>
+        </ul>
+    </div>
+    <?php
+}

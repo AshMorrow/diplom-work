@@ -1,6 +1,12 @@
+<!--<db>-->
+     <!--<host>stellash.mysql.ukraine.com.ua</host>-->
+     <!--<user>stellash_pokedex</user>-->
+     <!--<pass>wkj63qwc</pass>-->
+     <!--<dbname>stellash_pokedex</dbname>-->
+<!--</db>-->
 <db>
-     <host>stellash.mysql.ukraine.com.ua</host>
-     <user>stellash_pokedex</user>
-     <pass>wkj63qwc</pass>
-     <dbname>stellash_pokedex</dbname>
+     <host>127.0.0.1</host>
+     <user>root</user>
+     <pass>1111</pass>
+     <dbname>pokemon</dbname>
 </db>

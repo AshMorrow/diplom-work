@@ -12,4 +12,12 @@ class UserModel
         return $sth->fetch(PDO::FETCH_ASSOC);
 
     }
+
+    public function findAll(){
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare('SELECT * FROM user');
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 }
