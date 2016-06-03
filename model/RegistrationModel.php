@@ -15,7 +15,7 @@ class RegistrationModel
 {
     public function find($nick_name,$email){
         $db = DbConnection::getInstance()->getPdo();
-        $sth = $db->prepare('SELECT * FROM user WHERE nick_name = :nick_name AND email = :email LIMIT 1');
+        $sth = $db->prepare('SELECT * FROM user WHERE nick_name = :nick_name OR email = :email LIMIT 1');
         $sth->execute(compact('nick_name','email'));
         return $sth->fetch(\PDO::FETCH_ASSOC);
 

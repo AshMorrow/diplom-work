@@ -44,6 +44,20 @@ table.edit-list td{
 /************************************************/
 /*******************POKEDEX**********************/
 /************************************************/
+.page-main-title, .section-title {
+    color: #919191;
+    cursor: default;
+    font-size: 187.5%;
+    line-height: 125%;
+    text-transform: none;
+    font-family: "Flexo-Regular",arial,sans-serif;
+    margin: 30px 25px;
+}
+.pokemon-title{
+    color: #919191;
+    font-size: 187.5%;
+    margin-bottom: 50px;
+}
 .pokedex-filter-header {
     background: #313131;
     float: left;
@@ -89,6 +103,10 @@ table.edit-list td{
 }
 .filter-text-search label{
     margin-top: 20px;
+}
+
+.filter-text-search {
+    margin-bottom: 40px;
 }
 .pokedex-filter {
     clear: both;

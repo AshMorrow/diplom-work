@@ -31,12 +31,39 @@ class IndexController extends Controller
         return $this->render('pokedex',$pokemon_data);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     * @throws Exception
+     * Страница с поиском
+     */
     public function searchAction(Request $request){
         $model = new \model\SearchModel();
         $pokemon_data = $model->UserPokemonSearch($request->get('search'));
         return $this->render('search',$pokemon_data);
     }
-    
+
+    public function searchbytypeAction(Request $request){
+        $model = new \model\SearchModel();
+        $type = $request->get('type');
+        $weaknes = $request->get('weaknes');
+        if($type){
+            $pokemon_data['type'] = $type;
+        }
+        if($weaknes){
+            $pokemon_data['weaknes'] = $weaknes;
+        }
+        $pokemon_data = $model->PokemonSearchParam($pokemon_data);
+
+        return $this->render('search',$pokemon_data);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     * @throws Exception
+     * Данные для ajax подгрузки
+     */
     public function unitAction(Request $request){
         $offset = $request->get('offset');
         $model = new \model\PokedexModel();

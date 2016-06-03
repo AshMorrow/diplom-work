@@ -2,6 +2,21 @@
 if(\library\Session::get('admin')) {
 
     ?>
-
+    <script>
+        $(document).ready(function () {
+            $("#birthday").mask("99-99-9999",{placeholder:"mm-dd-yyyy"})
+        });
+    </script>
+    <h1>Данные пользователя: <?=$param['nick_name']?></h1>
+    <b><?=\library\Session::getFlash();?></b>
+    <form method="post" action="">
+        <input type="hidden" name = 'id' value="<?=$param['id']?>">
+        <input placeholder="Ник" class="form-control" type="text" name="nick_name" value="<?=$param['nick_name']?>">
+        <input type="text" placeholder="mm-dd-yyyy" name="birthday" class="form-control" id="birthday" value="<?=$param['birthday']?>">
+        <input placeholder="Email" class="form-control" type="email" name="email" value="<?=$param['email']?>">
+        <input placeholder="Пароль" class="form-control" type="password" name="password" >
+        <input placeholder="Admin" class="form-control" type="text" name="admin" value="<?=$param['admin']?>">
+        <button class="btn btn-info">Изменить</button>
+    </form>
     <?php
 }

@@ -53,19 +53,12 @@ class SecurityController extends Controller
                     Session::set('loged',true);
                     Router::redirect('/');
                 }
+                Session::setFlash('Такой пользователь уже есть');
+
             }
 
         }
         return $this->render('registration',compact($form));
         
-    }
-
-    public function adminAction(Request $request){
-        return $this->render('admin');
-    }
-
-    public function logoutAction(){
-        Session::destroy();
-        Router::redirect('/');
     }
 }

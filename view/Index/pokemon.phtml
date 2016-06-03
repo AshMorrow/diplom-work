@@ -5,7 +5,7 @@ $pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
 \library\MetaHelper::setTitle($pokemon_data['name']);
 ?>
 <div>
-    <h1 style="text-align: center"><?= $pokemon_data['name'] ?> № <?= $pokemon_data['pokemon_id'] ?></h1>
+    <h1 class="text-center pokemon-title"><?= $pokemon_data['name'] ?> № <?= $pokemon_data['pokemon_id'] ?></h1>
 </div>
 <div class="pokedex-list-data">
     <div class="col-sm-6">
@@ -97,13 +97,14 @@ $pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
             foreach ($pokemon_type as $type) {
                 ?>
                 <div class='pokedex-pokemon-attributes'><span class='pill background-color-<?= strtolower($type)
-                    ?>'><a href="#"><?= $type ?></a></span></div>
+                    ?>'><a href="/?route=index/searchbytype&type=<?=$type?>"><?= $type ?></a></span></div>
                 <?php
             }
         } else {
             $type = strtolower($pokemon_type[0]);
             echo "<div class='pokedex-pokemon-attributes'>",
-                "<span class='pill background-color-{$type}'><a href='#'>" . ucfirst($type) . "</a> </span>",
+                "<span class='pill background-color-{$type}'><a href='/?route=index/searchbytype&type={$type}'>" .
+                ucfirst($type) . "</a> </span>",
             "</div>";
         }
         ?>
@@ -115,13 +116,14 @@ $pokemon_weaknesses = explode('/', $pokemon_data['weaknesses']);
                     ?>
                     <div class='pokedex-pokemon-attributes'><span
                             class='pill background-color-<?= strtolower($weaknesses)
-                            ?>'><a href='#'><?= $weaknesses ?></a></span></div>
+                            ?>'><a href='/?route=index/searchbytype&weaknes=<?= $weaknesses ?>'><?= $weaknesses ?></a></span></div>
                     <?php
                 }
             } else {
                 $weaknesses = strtolower($pokemon_weaknesses[0]);
                 echo "<div class='pokedex-pokemon-attributes'>",
-                    "<span class='pill background-color-{$weaknesses}'><a href='#'>" . ucfirst($weaknesses) . "</a></span>",
+                    "<span class='pill background-color-{$weaknesses}'><a
+                    href='/?route=index/searchbytype&weaknes={$weaknesses}'>" . ucfirst($weaknesses) . "</a></span>",
                 "</div>";
             }
             ?>

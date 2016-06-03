@@ -1,5 +1,4 @@
 <?php
-
 use \library\Controller;
 use \library\Router;
 use \library\Request;

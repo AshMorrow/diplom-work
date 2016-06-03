@@ -27,17 +27,80 @@ class AdminController extends \library\Controller
     public function usereditAction(Request $request)
     {
         $model = new \model\UserModel();
-        $user_data = $model->getPokemon($request->get('name'));
+        $user_data = $model->selectById($request->get('userid'));
+        $password = $user_data['password'];
         if ($request->isPost()) {
-            $this->pokemonupdateAction($request);
+            $this->userupdateAction($request,$password);
         }
         return $this->render('useredit', $user_data);
     }
 
-    public function userlistAction(){
+    public function userlistAction(Request $request){
+        if($request->get('delite')){
+            $this->userdelAction($request->get('delite'));
+            \library\Router::redirect('/?route=admin/userlist');
+        }
         $model = new \model\UserModel();
         $user_data = $model->findAll();
+        if ($request->isPost()) {
+            $this->useraddAction($request);
+        }
         return $this->render('userlist', $user_data);
+    }
+
+    public function userdelAction($id)
+    {
+        $model = new \model\UserModel();
+        $model->del($id);
+    }
+
+    public function useraddAction(Request $request)
+    {
+        $find = new \model\RegistrationModel();
+        $model = new \model\UserModel();
+        $password = (string)(new \library\Password($request->post('password')));
+        $admin = (int)$request->post('admin');
+        $user_data = [
+            'nick_name' => $request->post('nick_name'),
+            'birthday' => $request->post('birthday'),
+            'email' => $request->post('email'),
+            'password' => $password,
+            'admin' => $admin
+        ];
+        if (!$find->find($user_data['nick_name'], $user_data['email'])) {
+            if ($model->add($user_data)) {
+                \library\Router::redirect($_SERVER['REQUEST_URI']);
+            } else {
+                \library\Session::setFlash('что то нетак');
+            }
+        }
+        \library\Session::setFlash('Такой пользователь уже существует');
+    }
+
+    public function userupdateAction(Request $request,$password)
+    {
+        $form = new \model\UserForm($request);
+        if ($request->isPost()) {
+            $model = new \model\UserModel();
+            $id = $request->post('id');
+            if($request->post('password') != ''){
+                $password = (string)(new \library\Password($request->post('password')));
+            }
+            $user_data = [
+                'nick_name' => $request->post('nick_name'),
+                'birthday' => $request->post('birthday'),
+                'email' => $request->post('email'),
+                'password' => $password,
+                'admin' => $request->post('admin')
+            ];
+            if($model->update($id,$user_data)){
+                \library\Session::setFlash('Сохранено');
+                \library\Router::redirect($_SERVER['REQUEST_URI']);
+            }else{
+                \library\Session::setFlash('что то нетак');
+            }
+        }
+
     }
 
     public function pokemonupdateAction(Request $request)
