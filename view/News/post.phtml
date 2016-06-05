@@ -1,0 +1,44 @@
+<?php
+$post_data = $param;
+$tags = explode(',', $post_data['tags']);
+?>
+<div class="menu col-sm-3">
+    <?php
+    \library\NewsHelper::menuCatalog();
+    ?>
+</div>
+<div class="col-sm-8">
+    <h4><?= $post_data['post_name'] ?></h4>
+    <hr>
+    <div class="post-text text-justify">
+        <?= $post_data['post_text'] ?>
+    </div>
+    <hr>
+    <div class="tags">
+        <?php
+        foreach ($tags as $tag) {
+            echo "<a href='#' class=\"label label-default left \">" . $tag . "</a>";
+        }
+        ?>
+    </div>
+    <hr>
+    <?php
+        \library\NewsHelper::showComment($post_data['id']);
+    ?>
+    <hr>
+    <?php
+    if (\library\Session::get('loged')) {
+        ?>
+        <form method="post" action="">
+            <div class="form-group">
+                <label for="massage">Оставить коментрий</label>
+                <textarea id="massage" class="form-control" name="massage"></textarea>
+            </div>
+            <button class="btn btn-info">Добавить</button>
+        </form>
+        <?php
+    }else{
+        echo "Войдете или зарегистрируйтесь для того что бы оставлять коментарии";
+    }
+    ?>
+</div>

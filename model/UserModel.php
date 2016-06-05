@@ -16,7 +16,13 @@ class UserModel
     public function selectById($id){
         $db = DbConnection::getInstance()->getPdo();
         $sth = $db->prepare('SELECT * FROM user WHERE id='.$id);
-        $sth->execute(compact('email','password'));
+        $sth->execute();
+        return $sth->fetch(PDO::FETCH_ASSOC);
+    }
+    public function selectByName($name){
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare('SELECT * FROM user WHERE name='.$name);
+        $sth->execute();
         return $sth->fetch(PDO::FETCH_ASSOC);
     }
 

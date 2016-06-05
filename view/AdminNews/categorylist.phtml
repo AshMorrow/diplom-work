@@ -1,0 +1,89 @@
+<?php
+if (\library\Session::get('admin')) {
+?>
+<div class="center-container">
+    <b><?=\library\Session::getFlash();?></b>
+    <table class="pokedex-list-data table edit-list">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+               Название
+            </th>
+            <th>
+                Уровень доступа
+            </th>
+            <th>
+                Удалена
+            </th>
+            <td>
+                <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Добавить</button>
+            </td>
+        </tr>
+        <?php
+        foreach ($param as $id => $category_data) {
+            ?>
+            <tr>
+                <td>
+                    <?= $category_data['id'] ?>
+                </td>
+                <td>
+                    <?= $category_data['name'] ?>
+                </td>
+                <td>
+                    <?= $category_data['loged'] ?>
+                </td>
+                <td>
+                    <?= $category_data['delited'] ?>
+                </td>
+                <td>
+                    <a href="/?route=adminnews/newscategortyedit&categoryId=<?= $category_data['id'] ?>" class="btn
+btn-warning">Редактировать</a>
+                </td>
+                <td>
+                    <a href="/?route=adminnews/newscategorty&delited=<?= $category_data['id'] ?>" class="btn
+                    btn-danger">X</a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <?= \library\PagenationRender::render("/?route=admin/userlist&offset=", 1) ?>
+        </ul>
+    </div>
+    <?php
+    }
+    ?>
+    </div>
+<!-- Форма добавления категории в модальном окне -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Добавить категорию</h4>
+            </div>
+            <form method="post" action="">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nick_name">Название</label>
+                        <input id="nick_name" placeholder="Название" class="form-control" type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loged">Только авторизированым</label>
+                        <input id='loged' type="text" placeholder="0/1" name="loged" class="form-control"
+                               value="0">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

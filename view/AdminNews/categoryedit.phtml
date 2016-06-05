@@ -1,0 +1,29 @@
+<?php
+if(\library\Session::get('admin')) {
+
+    ?>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+    <h1>Категория: <?=$param['name']?></h1>
+    <b><?=\library\Session::getFlash();?></b>
+    <form method="post" action="">
+        <input type="hidden" name = 'id' value="<?=$param['id']?>">
+        <div class="form-group">
+            <label for="nick_name">Название</label>
+            <input id="nick_name" placeholder="Название" class="form-control" type="text" name="name" value="<?=$param['name']?>">
+        </div>
+        <div class="form-group">
+            <label for="loged">Только авторизированым</label>
+            <input id='loged' type="text" placeholder="0/1" name="loged" class="form-control"
+                   value="<?=$param['loged']?>">
+        </div>
+        <div class="form-group">
+            <label for="delited">Удалена</label>
+            <input id="delited" placeholder="0/1" class="form-control" type="text" name="delited"
+                   value="<?=$param['delited']?>">
+        </div>
+        <button class="btn btn-info">Изменить</button>
+    </form>
+    </div>
+    <?php
+}

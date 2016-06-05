@@ -1,0 +1,44 @@
+<div class="col-sm-3">
+    <?php
+    \library\NewsHelper::menuCatalog();
+    ?>
+</div>
+<div class="col-sm-8">
+    <?php
+    foreach ($param as $k => $v){
+    ?>
+    <div class="media-heading">
+        <h4><?= $k ?></h4>
+        <hr>
+    </div>
+    <?php
+
+    foreach ($v as $n_k => $n_v) {
+    ?>
+    <div class="media">
+        <div class="media-left">
+            <span>...</span>
+        </div>
+        <div class="media-body">
+            <a href="/?route=news/newspost&postId=<?= $n_v['id'] ?>">
+                <spam><?= $n_v['post_name'] ?></spam>
+            </a>
+        </div>
+        <div class="media-right">
+            <spam><?= $n_v['date'] ?></spam>
+        </div>
+        <?php
+        echo "</div>";
+        }
+
+        }
+        $catid = new \library\Request();
+        $catid = $catid->get('catId');
+        $count = \model\PostModel::countByCatIn($catid);
+        ?>
+        <div class="pagination">
+            <?php \library\PagenationRender::render('?route=news/newscategory&catId='.$catid.'&offset=',
+                $count['count']
+                ); ?>
+        </div>
+    </div>

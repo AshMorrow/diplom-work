@@ -1,0 +1,33 @@
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+    <h3>Лента новостей</h3>
+    <hr>
+<?php
+foreach($param as $k => $v){
+    ?>
+    <div class="media-heading">
+            <h4><a href="/?route=news/newscategory&catId=<?=$v[0]['cat_id']?>"><?=$k?></a></h4>
+        <hr>
+    </div>
+    <?php
+
+    foreach ($v as $n_k => $n_v) {
+        ?>
+    <div class="media">
+            <div class="media-left">
+
+            </div>
+            <div class="media-body newslist">
+                <a href="/?route=news/newspost&postId=<?=$n_v['id']?>"><spam><?=$n_v['post_name']?></spam></a>
+            </div>
+            <div class="media-right">
+                <spam><?=$n_v['date']?></spam>
+            </div>
+    </div>
+        <?php
+
+    }
+    echo "<hr>";
+}
+?>
+</div>

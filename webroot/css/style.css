@@ -5,7 +5,12 @@ header{
     margin: 0 auto;
     max-width: 1024px;
 }
-
+.admin-menu a{
+    color: #c12e2a !important;
+}
+.admin-menu li:hover a{
+    color: #ce8483 !important;
+}
 .bg-color-white {
     background-color: #fff;
     display: block;
@@ -30,6 +35,12 @@ header{
 
 .color-black {
     color: #000;
+}
+.post-text img{
+    width: 100%;
+}
+.newslist a{
+    color: #565656;
 }
 /************************************************/
 /*******************EditList*********************/

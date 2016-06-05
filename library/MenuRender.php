@@ -9,13 +9,7 @@ class MenuRender
         $main = [[
             'Главная' => '/'
         ],[
-            'Пользователи' => 'admin/userlist',
-            'loged' => true,
-            'admin' => true
-          ],[
-            'Редактировать' => 'admin/pokemonselect',
-            'loged' => true,
-            'admin' => true
+            'Новости' => 'news/newsmain',
         ], [
             'Регистрация' => 'security/registration',
             'loged' => false,
@@ -30,26 +24,48 @@ class MenuRender
             'admin' => false
         ]
         ];
+        $admin_menu = [[
+            'Пользователи' => 'admin/userlist',
+        ], [
+                'Категории новостей' => 'adminnews/newscategorty',
+        ], [
+                'Управлене новостями' => 'adminnews/newspostadd',
+        ],
+            [
+                'Редактировать покемонов' => 'admin/pokemonselect',
+            ]
+        ];
+
+        if ($admin) {
+            echo '<ul class="admin-menu  nav navbar-nav container clearfix" >';
+            foreach ($admin_menu as $value) {
+                foreach ($value as $k => $d) {
+                    $href = '/?route=' . $d;
+                    echo "<li><a href='$href'>$k</a></li>";
+                }
+            }
+            echo '</ul>';
+        }
 
         foreach ($main as $value) {
             foreach ($value as $k => $d) {
                 if (!isset($value['loged'])) {
-                    if($d == '/'){
+                    if ($d == '/') {
                         $href = '/';
-                    }else{
-                        $href = '/?route='.$d;
+                    } else {
+                        $href = '/?route=' . $d;
                     }
                     echo "<li><a href='$href'>$k</a></li>";
                     continue;
                 }
                 if ($value['loged'] == $loged && $value['admin'] == true && $admin == true) {
                     if ($k != 'loged' && $k != 'admin') {
-                        $href = '/?route='.$d;
+                        $href = '/?route=' . $d;
                         echo "<li><a href='$href'>$k</a></li>";
                     }
-                }elseif ($value['loged'] == $loged && $value['admin'] == false) {
+                } elseif ($value['loged'] == $loged && $value['admin'] == false) {
                     if ($k != 'loged' && $k != 'admin') {
-                        $href = '/?route='.$d;
+                        $href = '/?route=' . $d;
                         echo "<li><a href='$href'>$k</a></li>";
                     }
                 }
