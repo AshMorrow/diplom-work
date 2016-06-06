@@ -7,7 +7,7 @@ abstract class Cookie
 {
     public static function set($key, $value, $time = 31536000)
     {
-        setcookie($key, $value, time() + $time, '/') ;
+        setcookie($key, $value, time() + $time) ;
     }
 
     public static function get($key)

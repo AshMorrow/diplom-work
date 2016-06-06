@@ -41,11 +41,49 @@ class PostModel
         return $sth->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function updatePost($id,$post_data)
+    {
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare("UPDATE news_post SET
+        cat_id = :cat_id,
+        post_name = :post_name,
+        post_text = :post_text,
+        tags = :tags,
+        date = :date,
+        delited = :delited
+        WHERE id = ". $id);
+        $data = $sth->execute($post_data);
+        if(!$data){
+            throw new \Exception('empty array', 404);
+        }
+        return $data;
+    }
+
+    public function delitePost($id)
+    {
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare("UPDATE news_post SET
+        delited = 1
+        WHERE id = ". $id);
+        $data = $sth->execute();
+        if(!$data){
+            throw new \Exception('empty array', 404);
+        }
+        return $data;
+    }
+
     public static function countByCatIn($catid){
         $db = DbConnection::getInstance()->getPdo();
         $sth = $db->prepare('SELECT COUNT(*) as count FROM news_post WHERE cat_id='.$catid);
         $sth->execute();
         return $sth->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function selectLast(){
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare('SELECT * FROM news_post ORDER BY id DESC LIMIT 5');
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

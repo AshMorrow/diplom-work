@@ -43,7 +43,7 @@ class NewsController extends \library\Controller
             }
             $news_category = $model->getCategoy($cat_id, $loged);
             foreach ($news_category as $k => $v) {
-                $news_post = $page_model->selectPostByCatId($news_category['id'],10,$offset);
+                $news_post = $page_model->selectPostByCatId($news_category['id'],5,$offset);
                 if ($news_post) {
                     $news[$news_category['name']] = $news_post;
                 }
@@ -82,5 +82,11 @@ class NewsController extends \library\Controller
                 \library\Router::redirect('/?route=security/login');
             }
         }
+    }
+
+    public function searchAction(Request $request){
+        $model = new \model\SearchModel();
+        $news_post = $model->tagSearch($request->get('tag'));
+        return $this->render('search',$news_post);
     }
 }

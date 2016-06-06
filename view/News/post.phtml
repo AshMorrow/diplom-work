@@ -17,7 +17,7 @@ $tags = explode(',', $post_data['tags']);
     <div class="tags">
         <?php
         foreach ($tags as $tag) {
-            echo "<a href='#' class=\"label label-default left \">" . $tag . "</a>";
+            echo "<a href='/?route=news/search&tag={$tag}' class=\"label label-default left \">" . $tag . "</a>";
         }
         ?>
     </div>
@@ -38,7 +38,14 @@ $tags = explode(',', $post_data['tags']);
         </form>
         <?php
     }else{
-        echo "Войдете или зарегистрируйтесь для того что бы оставлять коментарии";
+        ?>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p class="text-center">Войдете или зарегистрируйтесь для того что бы оставлять коментарии
+                </p>
+            </div>
+        </div>
+    <?php
     }
     ?>
 </div>

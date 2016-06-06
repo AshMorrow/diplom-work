@@ -8,7 +8,7 @@ class MenuRender
         $admin = \library\Session::get('admin');
         $main = [[
             'Главная' => '/'
-        ],[
+        ], [
             'Новости' => 'news/newsmain',
         ], [
             'Регистрация' => 'security/registration',
@@ -26,14 +26,15 @@ class MenuRender
         ];
         $admin_menu = [[
             'Пользователи' => 'admin/userlist',
+        ],[
+        'Покемоны' => 'admin/pokemonselect',
         ], [
-                'Категории новостей' => 'adminnews/newscategorty',
+            'Категории новостей' => 'adminnews/newscategorty',
         ], [
-                'Управлене новостями' => 'adminnews/newspostadd',
-        ],
-            [
-                'Редактировать покемонов' => 'admin/pokemonselect',
-            ]
+            'Посты' => 'adminnews/newspostlist',
+        ], [
+            'Коментарии' => 'adminnews/commentlist',
+        ]
         ];
 
         if ($admin) {

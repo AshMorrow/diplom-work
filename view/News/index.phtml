@@ -1,7 +1,31 @@
+<link rel="stylesheet" href="/webroot/bxslider/jquery.bxslider.css">
+<script src="/webroot/bxslider/jquery.bxslider.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.slider1').bxSlider({
+            slideWidth: 200,
+            minSlides: 2,
+            maxSlides: 3,
+            slideMargin: 10
+        });
+    });
+</script>
+<style>
+    .slider1 p{
+        height: 200px;
+    }
+</style>
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
+
     <h3>Лента новостей</h3>
     <hr>
+
+    <div class="slider1">
+        <?php
+        \library\NewsHelper::slider();
+        ?>
+    </div>
 <?php
 foreach($param as $k => $v){
     ?>
@@ -9,6 +33,7 @@ foreach($param as $k => $v){
             <h4><a href="/?route=news/newscategory&catId=<?=$v[0]['cat_id']?>"><?=$k?></a></h4>
         <hr>
     </div>
+
     <?php
 
     foreach ($v as $n_k => $n_v) {
@@ -18,10 +43,10 @@ foreach($param as $k => $v){
 
             </div>
             <div class="media-body newslist">
-                <a href="/?route=news/newspost&postId=<?=$n_v['id']?>"><spam><?=$n_v['post_name']?></spam></a>
+                <a  href="/?route=news/newspost&postId=<?=$n_v['id']?>"><spam ><?=$n_v['post_name']?></spam></a>
             </div>
-            <div class="media-right">
-                <spam><?=$n_v['date']?></spam>
+            <div class="media-right" >
+                <p style="width: 80px;" class="media-object"><?=$n_v['date']?></p>
             </div>
     </div>
         <?php

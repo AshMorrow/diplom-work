@@ -1,0 +1,89 @@
+<?php
+if (\library\Session::get('admin')) {
+    \library\MetaHelper::setTitle('Коментарии')
+    ?>
+    <script>
+        $(function(){
+           $('.filter').on('click',function(){
+               $('.confirm').hide();
+               $('.noconfirm').hide();
+               $('.delited').hide();
+
+               if($(this).attr('value') == 'check'){
+                   $('.confirm').show();
+               }else if($(this).attr('value') == 'nocheck'){
+                   $('.noconfirm').show();
+               }else if($(this).attr('value') == 'delited'){
+                   $('.delited').show();
+               }else{
+                   $('tr').show();
+               }
+           })
+        });
+    </script>
+    <div class="center-container">
+    <b><?= \library\Session::getFlash(); ?></b>
+    <table class="pokedex-list-data table edit-list">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Название
+            </th>
+            <th>
+                Текст
+            </th>
+            <th>
+                Проверено
+            </th>
+            <th>
+                Удалена
+            </th>
+            <td>
+                <input checked class="filter" type="radio" name="filter" value="all"> Все
+                <input class="filter" type="radio" name="filter" value="check"> Одобреные
+                <input class="filter" type="radio" name="filter" value="nocheck"> К проверке
+                <input class="filter" type="radio" name="filter" value="delited"> Удалены
+            </td>
+        </tr>
+        <?php
+        foreach ($param as $id => $comment) {
+            if($comment['confirm']){
+                $class = 'confirm';
+            }else{
+                $class = 'noconfirm';
+            }
+            if($comment['delited']){
+                $class .=' delited';
+            }
+            ?>
+            <tr class="<?=$class?>">
+                <td>
+                    <?= $comment['id'] ?>
+                </td>
+                <td>
+                    <?= $comment['post_id'] ?>
+                </td>
+                <td>
+                    <?= $comment['massage'] ?>
+                </td>
+                <td>
+                    <?= $comment['confirm'] ?>
+                </td>
+                <td>
+                    <?= $comment['delited'] ?>
+                </td>
+                <td>
+                    <a href="/?route=adminnews/commentedit&commentId=<?= $comment['id'] ?>" class="btn
+btn-warning">Редактировать</a>
+                </td>
+                <td>
+                    <a href="/?route=adminnews/commentlist&delited=<?= $comment['id'] ?>" class="btn
+                    btn-danger">X</a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+    <?php
+}

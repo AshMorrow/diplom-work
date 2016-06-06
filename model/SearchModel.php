@@ -39,4 +39,16 @@ class SearchModel
         $sth->execute();
         return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function tagSearch($type){
+        if (is_string($type)){
+            $searhc_part = 'tags LIKE \'%'.$type.'%\'';
+        }else{
+            throw new \Exception('Неверный параметр в модели',404);
+        }
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare('SELECT * FROM news_post WHERE '.$searhc_part);
+        $sth->execute();
+        return $sth->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

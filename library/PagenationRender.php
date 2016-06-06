@@ -11,7 +11,7 @@ namespace library;
 
 class PagenationRender
 {
-    public static function render($href,$pokemon_count,$offset=0,$per_page = 10)
+    public static function render($href,$pokemon_count,$per_page = 10)
     {
         $list_pages = ceil($pokemon_count / $per_page);
         for ($i = 0; $i < $list_pages; $i++) {

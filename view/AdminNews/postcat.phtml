@@ -1,0 +1,75 @@
+<?php
+if (\library\Session::get('admin')) {
+
+    ?>
+    <div class="col-sm-2">
+        <div class="nav nav-stacked">
+            <?php \library\NewsHelper::menuListCatalog(); ?>
+        </div>
+    </div>
+    <div class="col-md-10">
+    <?php
+if ($param) {
+    ?>
+    <div class="center-container">
+    <b><?= \library\Session::getFlash(); ?></b>
+    <table class="pokedex-list-data table edit-list">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Название
+            </th>
+            <th>
+                Дата
+            </th>
+<!--            <th>-->
+<!--                Удалена-->
+<!--            </th>-->
+            <td>
+                <a href="/?route=adminnews/newspostadd" class="btn btn-info">Добавить</a>
+            </td>
+        </tr>
+        <?php
+        foreach ($param as $id => $post_data) {
+            ?>
+            <tr>
+                <td>
+                    <?= $post_data['id'] ?>
+                </td>
+                <td>
+                    <?= $post_data['post_name'] ?>
+                </td>
+                <td>
+                    <?= $post_data['date'] ?>
+                </td>
+<!--                <td>-->
+<!--                    --><?//= $post_data['delited'] ?>
+<!--                </td>-->
+                <td>
+                    <a href="/?route=adminnews/newspostedit&postId=<?= $post_data['id'] ?>" class="btn
+btn-warning">Редактировать</a>
+                </td>
+                <td>
+                    <a href="/?route=adminnews/newspostlist&delited=<?= $post_data['id'] ?>" class="btn
+btn-danger">X</a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+    <?php
+}else{
+    ?>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p class="text-center">Выберите категорию
+            </p>
+        </div>
+    </div>
+    <?php
+}
+    ?>
+    </div>
+    <?php
+}

@@ -4,16 +4,11 @@
     ?>
 </div>
 <div class="col-sm-8">
+    <h4>Поиск по тегу: <?=$_GET['tag']?></h4>
+    <hr>
     <?php
-    foreach ($param as $k => $v){
-    ?>
-    <div class="media-heading">
-        <h4><?= $k ?></h4>
-        <hr>
-    </div>
-    <?php
+    foreach ($param as $k => $n_v){
 
-    foreach ($v as $n_k => $n_v) {
     ?>
     <div class="media">
         <div class="media-left">
@@ -30,13 +25,5 @@
         <?php
         echo "</div>";
         }
-
-        }
-        $catid = new \library\Request();
-        $catid = $catid->get('catId');
-        $count = \model\PostModel::countByCatIn($catid);
-        ?>
-        <div class="pagination">
-            <?php \library\PagenationRender::render('?route=news/newscategory&catId='.$catid.'&offset=',$count['count'],5); ?>
-        </div>
+?>
     </div>

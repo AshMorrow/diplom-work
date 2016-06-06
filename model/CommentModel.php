@@ -25,10 +25,52 @@ class CommentModel
         return $data;
     }
 
-    public function getComment($post_id)
+    public function updateComment($id,$comment_data)
     {
         $db = DbConnection::getInstance()->getPdo();
-        $sth = $db->prepare("SELECT * FROM comment WHERE post_id=".$post_id);
+        $sth = $db->prepare("UPDATE comment SET
+        massage = :massage,
+        confirm = :confirm,
+        delited = :delited
+        WHERE id = ". $id);
+        $data = $sth->execute($comment_data);
+        if(!$data){
+            throw new \Exception('empty array', 404);
+        }
+        return $data;
+    }
+
+    public function deliteComment($id)
+    {
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare("UPDATE comment SET
+        delited = 1
+        WHERE id = ". $id);
+        $data = $sth->execute();
+        if(!$data){
+            throw new \Exception('empty array', 404);
+        }
+        return $data;
+    }
+
+    public function selectCommentBytId($id){
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare('SELECT * FROM comment WHERE id='.$id);
+        $sth->execute();
+        return $sth->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getComment($post_id=null)
+    {
+        if($post_id){
+            $sql_part = ' WHERE post_id='.$post_id;
+        }
+        else{
+            $sql_part = '';
+        }
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare("SELECT * FROM comment".$sql_part);
         $data = $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }

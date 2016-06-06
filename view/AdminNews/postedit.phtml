@@ -1,0 +1,53 @@
+<?php
+if(\library\Session::get('admin')) {
+    \library\MetaHelper::setTitle('Редактирование статьи');
+$post_data = $param;
+?>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>$(document).ready(function(){
+            tinymce.init({ selector:'textarea' }
+            )});</script>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <h4>Редактировать статью</h4>
+        <hr>
+        <b><?=\library\Session::getFlash();?></b>
+        <form method="post" action="">
+            <input id="id" name="id" type="hidden" value="<?=$post_data['id']?>">
+            <div class="form-group">
+                <label for="cat_id">Категория новости</label>
+                <select id="cat_id" class="form-control" name="cat_id" required>
+                    <?php \library\NewsHelper::selectListCatalog($post_data['cat_id']);  ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="post_name">Название</label>
+                <input id="post_name" placeholder="Название" class="form-control" type="text" name="post_name"
+                       value="<?=$post_data['post_name']?>" required>
+            </div>
+            <div class="form-group">
+                <label for="post_text">Статья</label>
+            <textarea id="post_text" name="post_text" class="form-control" rows="20">
+                <?=$post_data['post_text']?>
+            </textarea>
+            </div>
+            <div class="form-group">
+                <label for="tags">Теги</label>
+                <input id="tags" placeholder="тег1,тег2" class="form-control" type="text" name="tags"
+                       value="<?=$post_data['tags']?>">
+            </div>
+            <div class="form-group">
+                <label for="date">Дата</label>
+                <input id="date" placeholder="" class="form-control" type="text" name="date"
+                       value="<?=$post_data['date']?>">
+            </div>
+            <div class="form-group">
+                <label for="delited">Удалена</label>
+                <input id="delited" placeholder="0/1" class="form-control" type="text" name="delited"
+                       value="<?=$post_data['delited']?>">
+            </div>
+            <button class="btn btn-info">Изменить</button>
+        </form>
+    </div>
+    <?php
+}

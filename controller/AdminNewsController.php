@@ -89,6 +89,103 @@ class AdminNewsController extends \library\Controller{
         return $this->render('newspostadd');
     }
 
+    public function newsPostListAction(Request $request)
+    {
+        $model = new \model\PostModel();
+        $cat_id = $request->get('catId');
+        if($request->get('delited')){
+            $model->delitePost($request->get('delited'));
+            \library\Router::redirect('/?route=adminnews/newspostlist');
+        }
+        if($cat_id){
+            $post = $model->selectPostByCatId($cat_id);
+            return $this->render('postcat',$post);
+        }else{
+            return $this->render('postcat');
+        }
+    }
 
+    public function newsPostEditAction(Request $request)
+    {
+        $model = new \model\PostModel();
+        $post_id = $request->get('postId');
+        if($post_id){
+            if($request->isPost()){
+                $this->newsPostUpdateAction($request);
+            }
+            $post_data = $model->selectPostBytId($post_id);
+            return $this->render('postedit',$post_data);
+        }
+    }
+
+
+    public function newsPostUpdateAction(Request $request)
+    {
+        if ($request->isPost()) {
+            $model = new \model\PostModel();
+            $id = $request->post('id');
+            $category_data = [
+                'cat_id' => $request->post('cat_id'),
+                'post_name' => $request->post('post_name'),
+                'post_text' => $request->post('post_text'),
+                'tags' => $request->post('tags'),
+                'date' => $request->post('date'),
+                'delited' => $request->post('delited')
+            ];
+            if($model->updatePost($id,$category_data)){
+                \library\Session::setFlash('Сохранено');
+                \library\Router::redirect($_SERVER['REQUEST_URI']);
+            }else{
+                \library\Session::setFlash('что то нетак');
+            }
+        }
+
+    }
+
+    /********************Comments Admin Actions********************/
+
+    public function commentListAction(Request $request)
+    {
+        $model = new \model\CommentModel();
+        $comment = $model->getComment();
+        if($request->get('delited')){
+            $model->deliteComment($request->get('delited'));
+            \library\Router::redirect('/?route=adminnews/commentlist');
+        }
+        return $this->render('comment',$comment);
+    }
+
+    public function commentEditAction(Request $request)
+    {
+        $model = new \model\CommentModel();
+        $comment_id = $request->get('commentId');
+        if($comment_id){
+            if($request->isPost()){
+                $this->commenUpdateAction($request);
+            }
+            $comment_data = $model->selectCommentBytId($comment_id);
+            return $this->render('commentedit',$comment_data);
+        }
+    }
+
+    public function commenUpdateAction(Request $request)
+    {
+        if ($request->isPost()) {
+            $model = new \model\CommentModel();
+            $id = $request->post('id');
+            $comment_data = [
+                'massage' => $request->post('massage'),
+                'confirm' => $request->post('confirm'),
+                'delited' => $request->post('delited')
+            ];
+            if($model->updateComment($id,$comment_data)){
+                \library\Session::setFlash('Сохранено');
+                \library\Router::redirect($_SERVER['REQUEST_URI']);
+            }else{
+                \library\Session::setFlash('что то нетак');
+            }
+        }
+
+    }
 
 }
